@@ -1,0 +1,15 @@
+tell application "System Events"
+    delay 0.5
+    key code 123
+
+    delay 0.5
+    set pass to "{mac_pswd}"
+    repeat with i from 1 to count characters of pass
+      keystroke (character i of pass)
+      delay 0.1
+    end repeat
+
+    delay 0.3
+    keystroke return
+end tell
+

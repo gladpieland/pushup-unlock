@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.pushup.screen.plist</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>pushup_mac_dir/mac/screen-lock.sh</string>
+  </array>
+	<key>StartInterval</key>
+	<integer>lockInterval</integer>
+  <key>StandardOutPath</key>
+  <string>pushup_mac_dir/pushup.log</string>
+  <key>StandardErrorPath</key>
+  <string>pushup_mac_dir/pushup.log</string>
+</dict>
+</plist>
