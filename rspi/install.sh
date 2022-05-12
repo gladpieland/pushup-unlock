@@ -1,4 +1,4 @@
-current_dir=${PWD}
+current_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 echo "current_dir is $current_dir"
 
 # 1. record host ip and shell path in raspberry pi

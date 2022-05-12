@@ -1,7 +1,9 @@
 # source /home/pi/.bash_profile
 export DISPLAY=:0
-current_dir=${PWD}
-working_dir="$(dirname `pwd`)"
+ current_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+ echo "current_dir is $current_dir"
+
+working_dir="$(dirname $current_dir)"
 echo "working_dir is $working_dir"
 
 source $current_dir/dest/env.sh

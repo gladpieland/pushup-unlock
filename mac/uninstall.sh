@@ -1,4 +1,4 @@
-current_dir=${PWD}
+ current_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 pushup_agent_name="com.pushup.screen.plist"
 launch_agents_dir=~/Library/LaunchAgents
 

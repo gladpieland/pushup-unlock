@@ -6,7 +6,7 @@
   <string>com.pushup.screen.plist</string>
   <key>ProgramArguments</key>
   <array>
-    <string>pushup_mac_dir/mac/screen-lock.sh</string>
+    <string>pushup_mac_dir/screen-lock.sh</string>
   </array>
 	<key>StartInterval</key>
 	<integer>lockInterval</integer>
