@@ -13,7 +13,8 @@ unlock_sh_path = working_dir + "/rspi/remote_unlock_mac.sh"
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
 
-voice_enabled=False
+voice_speaker_enabled=False
+nice_voice_enabled=False
 max_count = 2
 counter = 0
 stage = None
@@ -39,14 +40,23 @@ def findPosition(image, draw=True):
   return lmList
 
 def speakSpeech(speechText):
+  if not voice_speaker_enabled:
+    print('void play not enable.')
+    return
   os.system("espeak-ng '" + speechText + "'")
 
 def playVoice(voiceFilePath):
+  if not voice_speaker_enabled:
+    print('void play not enable.')
+    return
   os.system("aplay '" + voiceFilePath + "'")
 
 def playVoiceOrSpeech(text):
+  if not voice_speaker_enabled:
+    print('void play not enable.')
+    return
   may_path = working_dir + "/sound/" + text + ".wav'"
-  if voice_enabled and os.path.exists(may_path):
+  if nice_voice_enabled and os.path.exists(may_path):
     playVoice(text)
   else:
     speakSpeech(text)
