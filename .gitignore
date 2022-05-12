@@ -1,5 +1,3 @@
 *.log
-mac/dest
-rspi/dest
 output.avi
 .DS_Store
