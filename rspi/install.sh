@@ -1,8 +1,8 @@
 current_dir=${PWD}
+echo "current_dir is $current_dir"
 
 # 1. record host ip and shell path in raspberry pi
 cp $current_dir/env.sh $current_dir/dest/env.sh
-sed -i '' -e "s/{py_home_dir}/${py_home_dir}/g" $current_dir/dest/env.sh
 
 echo 'Please enter Python home direcotry(for example: ~/.virtualenvs/pushup): '
 read -r py_home_dir
@@ -13,6 +13,7 @@ then
 else
   py_home_dir="$py_home_dir"
 fi
+sed -i '' -e "s/{py_home_dir}/${py_home_dir}/g" $current_dir/dest/env.sh
 
 # 3. record host ip and shell path in Mac machine
 echo 'Please enter Username for screen unlock in remote Mac machine: '
