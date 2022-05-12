@@ -13,7 +13,7 @@ then
 else
   py_home_dir="$py_home_dir"
 fi
-sed -n "s#{py_home_dir}#${py_home_dir}#g" $current_dir/dest/env.sh
+sed -i -e "s#{py_home_dir}#${py_home_dir}#g" $current_dir/dest/env.sh
 
 # 3. record host ip and shell path in Mac machine
 echo 'Please enter Username for screen unlock in remote Mac machine: '
@@ -23,7 +23,7 @@ read -r mac_host_ip
 echo 'Please enter script directory in remote Mac machine: '
 read -r mac_shell_dir
 
-sed -n "s/{mac_username}/${mac_username}/g" $current_dir/dest/env.sh
-sed -n "s/{mac_host_ip}/${mac_host_ip}/g" $current_dir/dest/env.sh
-sed -n "s#{mac_shell_dir}#${mac_shell_dir}#g" $current_dir/dest/env.sh
+sed -i -e "s/{mac_username}/${mac_username}/g" $current_dir/dest/env.sh
+sed -i -e "s/{mac_host_ip}/${mac_host_ip}/g" $current_dir/dest/env.sh
+sed -i -e "s#{mac_shell_dir}#${mac_shell_dir}#g" $current_dir/dest/env.sh
 
