@@ -1,10 +1,10 @@
-# source /home/pi/.bash_profile
+#!/usr/bin/env bash
 export DISPLAY=:0
- current_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
- echo "current_dir is $current_dir"
-
+current_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 working_dir="$(dirname $current_dir)"
-echo "working_dir is $working_dir"
+log_file=$current_dir/logs/op.log
+
+echo "launch pushup counter - current_dir is $current_dir" >> $log_file
 
 source $current_dir/dest/env.sh
 
@@ -23,5 +23,7 @@ else
   fi
 fi
 
-echo "Push-up counter launched."
+echo "Push-up counter launched." >> $log_file
 popd
+
+echo "READY"

@@ -1,4 +1,5 @@
- current_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+#!/usr/bin/env bash
+current_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 echo "current_dir is $current_dir"
 pushup_agent_name="com.pushup.screen.plist"
 plist_file=$current_dir/src/$pushup_agent_name
