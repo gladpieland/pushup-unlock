@@ -1,4 +1,4 @@
-current_dir=${pwd}
+current_dir=${PWD}
 pushup_agent_name="com.pushup.screen.plist"
 plist_file=$current_dir/src/$pushup_agent_name
 dest_plist_file=$current_dir/dest/$pushup_agent_name

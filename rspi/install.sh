@@ -1,4 +1,4 @@
-current_dir=${pwd}
+current_dir=${PWD}
 
 # 1. record host ip and shell path in raspberry pi
 cp $current_dir/env.sh $current_dir/dest/env.sh

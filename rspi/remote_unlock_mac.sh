@@ -1,4 +1,4 @@
-current_dir=${pwd}
+current_dir=${PWD}
 log_file=$current_dir/logs/op.log
 source $current_dir/dest/env.sh
 

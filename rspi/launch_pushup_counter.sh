@@ -1,6 +1,6 @@
 # source /home/pi/.bash_profile
 export DISPLAY=:0
-current_dir=${pwd}
+current_dir=${PWD}
 working_dir="$(dirname `pwd`)"
 echo "working_dir is $working_dir"
 
