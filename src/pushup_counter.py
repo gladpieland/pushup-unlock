@@ -163,3 +163,6 @@ with mp_pose.Pose(min_detection_confidence=0.7, min_tracking_confidence=0.7) as 
 cv2.destroyAllWindows()
 voice_pool.shutdown()
 
+pid_file = open(pid_path, "w")
+pid_file.write("")
+pid_file.close()
