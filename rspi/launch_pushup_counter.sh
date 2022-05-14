@@ -4,7 +4,7 @@ current_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 working_dir="$(dirname $current_dir)"
 log_file=$current_dir/logs/op.log
 pushup_counter_path="src/pushup_counter.py"
-pid_path="$working_dir/rspi/desc/pid"
+pid_path="$working_dir/rspi/dest/pid"
 
 echo "launch pushup counter - current_dir is $current_dir" >> $log_file
 

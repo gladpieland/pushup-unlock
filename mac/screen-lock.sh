@@ -19,6 +19,9 @@ then
   ${current_dir}/dest/lockscreen
 else
   echo "launch push-up counter fail, message: $launch_result" >> $log_file
+  echo "-------------------------- message begin --------------------------" >> $log_file
+  echo "$launch_result" >> $log_file
+  echo "-------------------------- message done --------------------------" >> $log_file
 fi
 
 echo "done lock, `date`" >> $log_file
