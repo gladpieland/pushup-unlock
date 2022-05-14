@@ -61,7 +61,7 @@ def playVoiceOrSpeech(text):
   if not voice_speaker_enabled:
     print('voice or speech not enable.')
     return
-  may_path = working_dir + "/sound/" + text + ".wav'"
+  may_path = working_dir + "/sound/" + text + ".wav"
   if nice_voice_enabled:
     if not os.path.exists(may_path):
       print("voice file#{} not exist".format(may_path))
