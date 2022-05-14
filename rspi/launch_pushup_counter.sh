@@ -19,7 +19,6 @@ if test -f "$pid_path"; then
 fi
 
 # 2. run counter
-pushd $working_dir
 if test -z "$py_home_dir" 
 then
   python3 $working_dir/$pushup_counter_path
@@ -33,6 +32,5 @@ else
 fi
 
 echo "Push-up counter launched." >> $log_file
-popd
 
 echo "READY"

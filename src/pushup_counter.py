@@ -5,7 +5,7 @@ from concurrent.futures import ThreadPoolExecutor
 import time
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
-print("current_dir is ", current_dir)
+# print("current_dir is ", current_dir)
 
 working_dir = os.path.dirname(current_dir)
 unlock_sh_path = working_dir + "/rspi/remote_unlock_mac.sh"
