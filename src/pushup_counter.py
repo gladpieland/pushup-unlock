@@ -159,7 +159,7 @@ with mp_pose.Pose(min_detection_confidence=0.7, min_tracking_confidence=0.7) as 
 
     if video_writer is None:
       fourcc = cv2.VideoWriter_fourcc(*'XVID')
-      video_writer = cv2.VideoWriter(result_avi_file, fourcc, 16, (image.shape[1], image.shape[0]), True)
+      video_writer = cv2.VideoWriter(result_avi_file, fourcc, 30, (image.shape[1], image.shape[0]), True)
     # video_writer.write(image)
     output_pool.submit(writeImage, image)
 
@@ -171,6 +171,7 @@ with mp_pose.Pose(min_detection_confidence=0.7, min_tracking_confidence=0.7) as 
 # do a bit of cleanup
 cv2.destroyAllWindows()
 voice_pool.shutdown()
+output_pool.shutdown()
 
 pid_file = open(pid_path, "w")
 pid_file.write("")
