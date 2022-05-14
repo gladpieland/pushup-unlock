@@ -19,9 +19,9 @@ pid_file.close()
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
 
-voice_speaker_enabled=False
-nice_voice_enabled=False
-max_count = 1
+voice_speaker_enabled=True
+nice_voice_enabled=True
+max_count = 3
 counter = 0
 stage = None
 video_writer = None
@@ -44,6 +44,9 @@ def findPosition(image, draw=True):
       if idx > 0:
         print("{}#{}: {}".format(stage, counter, msg))
   return lmList
+
+def writeImage(image):
+  video_writer.write(image)
 
 def speakSpeech(speechText):
   if not voice_speaker_enabled:
@@ -77,6 +80,7 @@ stage = "-"
 flagRadius = 10
 end = False
 voice_pool = ThreadPoolExecutor(max_workers=1)
+output_pool = ThreadPoolExecutor(max_workers=1)
 
 voice_pool.submit(playVoiceOrSpeech, "ready-go" )
 
@@ -156,7 +160,8 @@ with mp_pose.Pose(min_detection_confidence=0.7, min_tracking_confidence=0.7) as 
     if video_writer is None:
       fourcc = cv2.VideoWriter_fourcc(*'XVID')
       video_writer = cv2.VideoWriter(result_avi_file, fourcc, 16, (image.shape[1], image.shape[0]), True)
-    video_writer.write(image)
+    # video_writer.write(image)
+    output_pool.submit(writeImage, image)
 
     key = cv2.waitKey(1) & 0xFF
     # if the `q` key was pressed, break from the loop
