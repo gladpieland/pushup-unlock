@@ -9,3 +9,5 @@ echo 'begin remote unlock' >> $log_file
 ssh $mac_username@$mac_host_ip "$mac_shell_dir/mac/screen-unlock.sh" >> $log_file  2>&1 &
 echo 'done remote unlock' >> $log_file
 
+exit 0
+

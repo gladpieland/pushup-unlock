@@ -24,3 +24,5 @@ else
 fi
 
 echo "done lock, `date`" >> $log_file
+
+exit 0
