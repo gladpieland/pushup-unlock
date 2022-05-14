@@ -67,7 +67,7 @@ def playVoiceOrSpeech(text):
       print("voice file#{} not exist".format(may_path))
       speakSpeech(text)
     else:
-      playVoice(text)
+      playVoice(may_path)
   else:
     speakSpeech(text)
 
