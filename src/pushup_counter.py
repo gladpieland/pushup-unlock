@@ -21,7 +21,7 @@ mp_pose = mp.solutions.pose
 
 voice_speaker_enabled=False
 nice_voice_enabled=False
-max_count = 2
+max_count = 1
 counter = 0
 stage = None
 video_writer = None
