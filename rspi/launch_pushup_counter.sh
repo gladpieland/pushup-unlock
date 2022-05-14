@@ -21,13 +21,13 @@ fi
 # 2. run counter
 if test -z "$py_home_dir" 
 then
-  python3 $working_dir/$pushup_counter_path &
+  python3 $working_dir/$pushup_counter_path >> $log_file  2>&1 &
 else
   if test -f "$py_home_dir/bin/python3"
   then
-    $py_home_dir/bin/python3  $working_dir/$pushup_counter_path &
+    $py_home_dir/bin/python3  $working_dir/$pushup_counter_path >> $log_file  2>&1 &
   else
-    $py_home_dir/python3  $working_dir/$pushup_counter_path &
+    $py_home_dir/python3  $working_dir/$pushup_counter_path >> $log_file  2>&1 &
   fi
 fi
 
