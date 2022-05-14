@@ -20,7 +20,7 @@ echo 'Please enter Username for screen unlock in remote Mac machine: '
 read -r mac_username
 echo 'Please enter host IP of remote Mac machine: '
 read -r mac_host_ip
-echo 'Please enter script directory in remote Mac machine: '
+echo 'Please enter push-up directory in remote Mac machine: '
 read -r mac_shell_dir
 
 sed -i -e "s/{mac_username}/${mac_username}/g" $current_dir/dest/env.sh

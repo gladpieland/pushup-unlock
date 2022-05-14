@@ -47,19 +47,19 @@ def findPosition(image, draw=True):
 
 def speakSpeech(speechText):
   if not voice_speaker_enabled:
-    print('void play not enable.')
+    print('speech speak not enable.')
     return
   os.system("espeak-ng '" + speechText + "'")
 
 def playVoice(voiceFilePath):
   if not voice_speaker_enabled:
-    print('void play not enable.')
+    print('voice play not enable.')
     return
   os.system("aplay '" + voiceFilePath + "'")
 
 def playVoiceOrSpeech(text):
   if not voice_speaker_enabled:
-    print('void play not enable.')
+    print('voice or speech not enable.')
     return
   may_path = working_dir + "/sound/" + text + ".wav'"
   if nice_voice_enabled and os.path.exists(may_path):
