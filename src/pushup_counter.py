@@ -9,6 +9,12 @@ print("current_dir is ", current_dir)
 
 working_dir = os.path.dirname(current_dir)
 unlock_sh_path = working_dir + "/rspi/remote_unlock_mac.sh"
+pid_path = working_dir + "/rspi/desc/pid"
+
+pid = os.getpid()
+pid_file = open(pid_path, "w")
+pid_file.write("{}".format(pid))
+pid_file.close()
 
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
