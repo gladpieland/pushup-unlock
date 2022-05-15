@@ -164,12 +164,6 @@ with mp_pose.Pose(min_detection_confidence=0.7, min_tracking_confidence=0.7) as 
     cv2.putText(image, text, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
     cv2.imshow('Pushup Counter', image)
 
-    if video_writer is None:
-      fourcc = cv2.VideoWriter_fourcc(*'XVID')
-      video_writer = cv2.VideoWriter(result_avi_file, fourcc, 30, (image.shape[1], image.shape[0]), True)
-    # video_writer.write(image)
-    output_pool.submit(writeImage, image)
-
     key = cv2.waitKey(1) & 0xFF
     # if the `q` key was pressed, break from the loop
     if end or key == ord("q"):
