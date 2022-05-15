@@ -3,9 +3,10 @@ import mediapipe as mp
 import os
 from concurrent.futures import ThreadPoolExecutor
 import time
+from datetime import datetime
+
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
-# print("current_dir is ", current_dir)
 
 working_dir = os.path.dirname(current_dir)
 unlock_sh_path = working_dir + "/rspi/remote_unlock_mac.sh"
@@ -42,32 +43,36 @@ def findPosition(image, draw=True):
           idx += 1
           #cv2.circle(image, (cx, cy), 5, (255, 0, 0), cv2.FILLED)
       if idx > 0:
-        print("{}#{}: {}".format(stage, counter, msg))
+        info("{}#{}: {}".format(stage, counter, msg))
   return lmList
+
+def info(msg):
+  dt_string = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
+  print("{} - {}".format(dt_string, msg))
 
 def writeImage(image):
   video_writer.write(image)
 
 def speakSpeech(speechText):
   if not voice_speaker_enabled:
-    print('speech speak not enable.')
+    info('speech speak not enable.')
     return
   os.system("espeak-ng '" + speechText + "'")
 
 def playVoice(voiceFilePath):
   if not voice_speaker_enabled:
-    print('voice play not enable.')
+    info('voice play not enable.')
     return
   os.system("aplay '" + voiceFilePath + "'")
 
 def playVoiceOrSpeech(text):
   if not voice_speaker_enabled:
-    print('voice or speech not enable.')
+    info('voice or speech not enable.')
     return
   may_path = working_dir + "/sound/" + text + ".wav"
   if nice_voice_enabled:
     if not os.path.exists(may_path):
-      print("voice file#{} not exist".format(may_path))
+      info("voice file#{} not exist".format(may_path))
       speakSpeech(text)
     else:
       playVoice(may_path)
@@ -90,7 +95,7 @@ with mp_pose.Pose(min_detection_confidence=0.7, min_tracking_confidence=0.7) as 
     success, image = cap.read()
     image = cv2.resize(image, (640,480))
     if not success:
-      print("Ignoring empty camera frame.")
+      info("Ignoring empty camera frame.")
       # If loading a video, use 'break' instead of 'continue'.
       continue
 
@@ -116,7 +121,7 @@ with mp_pose.Pose(min_detection_confidence=0.7, min_tracking_confidence=0.7) as 
       cv2.circle(image, (lmList[14][1], lmList[14][2]), flagRadius, (255, 0, 0), cv2.FILLED)
       cv2.circle(image, (lmList[13][1], lmList[13][2]), flagRadius, (255, 0, 0), cv2.FILLED)
 
-      print("check delta - {}#{}: d1#{}, d2#{}".format(stage, counter, (lmList[11][2] - lmList[13][2]), (lmList[12][2] - lmList[14][2])))
+      info("check delta - {}#{}: d1#{}, d2#{}".format(stage, counter, (lmList[11][2] - lmList[13][2]), (lmList[12][2] - lmList[14][2])))
 
       # 11 left shoulder, 12 right shoulder
       # 13 left elbow, 14 right elbow
@@ -128,13 +133,14 @@ with mp_pose.Pose(min_detection_confidence=0.7, min_tracking_confidence=0.7) as 
         cv2.circle(image, (lmList[12][1], lmList[12][2]), flagRadius, (0, 255, 0), cv2.FILLED)
         cv2.circle(image, (lmList[11][1], lmList[11][2]), flagRadius, (0, 255, 0), cv2.FILLED)
         stage = "down"
-        print('down action')
+        dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        info("down action at {}".format(dt_string))
       
       # up action must come to some distance, 
       # if (lmList[12][2] and lmList[11][2] <= lmList[14][2] and lmList[13][2]) and stage == "down":
       if ((lmList[11][2] + 0) < lmList[13][2] and (lmList[12][2] + 0) < lmList[14][2]) and stage == "down":
         stage = "up"
-        print('up action')
+        info('up action')
 
         # elbow turn to  pink (153 51 255)
         cv2.circle(image, (lmList[14][1], lmList[14][2]), flagRadius, (153, 51, 255), cv2.FILLED)
@@ -142,7 +148,8 @@ with mp_pose.Pose(min_detection_confidence=0.7, min_tracking_confidence=0.7) as 
 
         counter += 1
         counter2 = str(int(counter))
-        print('counter#{}\n'.format(counter))
+        dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        info('reach count#{}\n'.format(counter))
 
         if counter < max_count:
           voice_pool.submit(playVoiceOrSpeech, counter2)
